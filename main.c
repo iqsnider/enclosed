@@ -7,9 +7,7 @@ struct Node {
 	struct Node *next;
 };
 
-
 int main() {
-
 	struct Node *head = NULL;
 
 	for (int i = 0; i < 6; i++){
