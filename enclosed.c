@@ -26,12 +26,13 @@ struct properties {
 };
 
 int main() {
+	int randomNumber = rand();
 
 	struct properties shape;
 	shape.total_nodes = 3;
 
 	for (int i = 0; i < shape.total_nodes; i++){
-		printf("Hello");
+
 	}
 
 }
