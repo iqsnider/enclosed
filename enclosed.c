@@ -2,37 +2,38 @@
 #include <stdlib.h>
 #include <string.h>
 
+// a basic point
+struct Point {
+	double x, y;
+};
 
-// general segment definition
+// a basic segment
 struct Segment {
-	double *p1;
-	double *p2;
+	struct Point p1;
+	struct Point p2;
 };
 
-// node for linked-list
-struct Node {
-	void *this_node;
-	struct Node *next;
-};
+// a function for stochastically generating the next point
+struct Point stochasticPoint(struct Point p) {
+	int xrn = rand();
+	int yrn = rand();
 
-// Problem properties. Currently includes:
-// 1. total number of nodes that need to be filled
-// 2. dynamic array for filling segments
-// 3. dynamic array for filling nodes
-struct properties {
+	struct Point next_point = {xrn, yrn};
+
+	return next_point;
+}
+
+struct Properties {
 	int total_nodes;
-	struct Segment *seg_list;
-	struct Node *node_list;
 };
 
 int main() {
-	int randomNumber = rand();
-
-	struct properties shape;
+	struct Properties shape;
 	shape.total_nodes = 3;
+	
+	struct Point point_list[shape.total_nodes];
 
 	for (int i = 0; i < shape.total_nodes; i++){
-
 	}
 
 }
