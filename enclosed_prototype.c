@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-	int total_nodes = 100;
+	int total_nodes = 4;
 
 	// initialize with triangle
 	double shape[total_nodes][2];
@@ -17,6 +17,6 @@ int main() {
 		int random_number = rand() % (total_nodes + 1);
 		double random_modifier = random_number*1.0f/(total_nodes*1.0f);
 
-		printf("%.3f",random_modifier);
+
 	}
 }
