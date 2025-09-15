@@ -14,8 +14,6 @@ struct Segment {
 	struct Node *p2;
 };
 
-
-
 // Problem properties. Currently includes:
 // 1. total number of nodes that need to be filled
 // 2. dynamic array for filling segments
@@ -27,8 +25,10 @@ struct properties {
 };
 
 int main() {
-	struct properties shape;
-	shape.total_nodes = 3;
+	struct properties *shape;
+	shape->total_nodes = 3;
+
+	shape->node_list = malloc(shape->total_nodes*sizeof(struct Node));
 
 	struct Node *a_node = malloc(sizeof(struct Node));
 
@@ -37,6 +37,7 @@ int main() {
 	memcpy(target_array, tmp_point, 2*sizeof(double));
 
 	a_node->this_node = target_array;
+
 
 	free(a_node->this_node);
 	free(a_node);
