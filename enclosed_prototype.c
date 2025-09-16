@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string.h>
 
-// iterative solver and 2D array memory allocator
+// iterative solving and 2D array memory allocator
 double** solveShape(int n, int m, double arr[n][m],
 		    double new_internal_angle, double tolerance){
 	double** result_matrix = malloc(n*sizeof(double));
@@ -16,7 +16,7 @@ double** solveShape(int n, int m, double arr[n][m],
 }
 
 // print all vertice coordinates
-void print2Darray(int n, int m, double arr[n][m]) {
+void print2Darray(int n, int m, double** arr) {
 	for (int i = 0; i < n; i++){
 		for (int j = 0; j < m; j++){
 			printf("%.3f ", arr[i][j]);
@@ -38,8 +38,8 @@ int main() {
 	shape[2][0] = 0.5;
 	shape[2][1] = sqrt(shape[2][0]*shape[2][0] + 1);
 
-	solveShape(total_nodes, 2, shape, M_PI, 0.0000001);
-	print2Darray(total_nodes, 2, shape);
+	double** result = solveShape(total_nodes, 2, shape, M_PI, 0.0000001);
+	print2Darray(total_nodes, 2, result);
 
 	// for (int i=0;i<total_nodes;i++){
 	// 	int random_number = rand() % (total_nodes + 1);
