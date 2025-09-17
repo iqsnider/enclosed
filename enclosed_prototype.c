@@ -10,10 +10,27 @@ double** solveShape(int n, int m, double arr[n][m],
 
 	int i = 2;
 	// special logic solving case
-	
-	
-	
-	
+
+	// general location of added node
+	arr[i][0] = arr[i-1][0] + cos(new_internal_angle);
+	arr[i][1] = arr[i-1][1] + sin(new_internal_angle);
+
+	// solve for the new location of the node next to added node
+	// such that all segments remain a length of 1
+	for (double j = 0; j <= M_PI; j += step_size){
+		double x = arr[i][0] + cos(new_internal_angle + j);
+		double y = arr[i][1] + sin(new_internal_angle + j);
+		// printf("(%.5f, %.5f)", x, y);
+
+		// double length_to_next_node = sqrt((x - arr[i+1][0])*(x - arr[i+1][0]) + (y - arr[i+1][1])*(y - arr[i+1][1]));
+		double length_to_next_node = sqrt(x*x + y*y);
+		// printf("%.5f\n", length_to_next_node);
+		if (length_to_next_node <= 1 + step_size && length_to_next_node >= 1 - step_size){
+			arr[i+1][0] = x;
+			arr[i+1][1] = y;
+			break;
+		}
+	}
 
 
 	
@@ -46,9 +63,9 @@ int main() {
 	shape[1][0] = 1.0;
 	shape[1][1] = 0.0;
 	shape[total_nodes-1][0] = 0.5;
-	shape[total_nodes-1][1] = sqrt(1 - shape[2][0]*shape[2][0]);
+	shape[total_nodes-1][1] = sqrt(1 - shape[total_nodes-1][0]*shape[total_nodes-1][0]);
 
-	double** result = solveShape(total_nodes, 2, shape, M_PI, 0.0000001);
+	double** result = solveShape(total_nodes, 2, shape, M_PI/4, 0.1);
 	print2Darray(total_nodes, 2, result);
 
 	// for (int i=0;i<total_nodes;i++){
