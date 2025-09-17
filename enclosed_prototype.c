@@ -5,10 +5,20 @@
 
 // iterative solving and 2D array memory allocator
 double** solveShape(int n, int m, double arr[n][m],
-		    double new_internal_angle, double tolerance){
+		    double new_internal_angle, double step_size){
 	double** result_matrix = malloc(n*sizeof(double));
+
+	int i = 2;
+	// special logic solving case
+	
+	
+	
+	
+
+
+	
 	for(int i = 0; i < n; i++){
-		result_matrix[i] = malloc(m*sizeof(double));
+		result_matrix[i] = malloc(m*sizeof(double*));
 		memcpy(result_matrix[i], arr[i], m*sizeof(double));
 	}
 
@@ -35,8 +45,8 @@ int main() {
 	shape[0][1] = 0.0;
 	shape[1][0] = 1.0;
 	shape[1][1] = 0.0;
-	shape[2][0] = 0.5;
-	shape[2][1] = sqrt(shape[2][0]*shape[2][0] + 1);
+	shape[total_nodes-1][0] = 0.5;
+	shape[total_nodes-1][1] = sqrt(1 - shape[2][0]*shape[2][0]);
 
 	double** result = solveShape(total_nodes, 2, shape, M_PI, 0.0000001);
 	print2Darray(total_nodes, 2, result);
