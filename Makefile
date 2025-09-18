@@ -1,14 +1,23 @@
 CC=gcc
 CFLAGS=-g -Wall
 SDL_LIBS=-I/opt/homebrew/include -L/opt/homebrew/lib -lSDL2
-all: main enclosed enclosed_prototype
-main: main.c
-	$(CC) $(CFLAGS) main.c -o main
-enclosed: enclosed.c
-	$(CC) $(CFLAGS) $(SDL_LIBS) enclosed.c -o enclosed
 
-enclosed_prototype: enclosed_prototype.c
-	$(CC) $(CFLAGS) enclosed_prototype.c -o proto
+BIN_DIR=bin
+TARGETS=$(BIN_DIR)/main $(BIN_DIR)/proto
+
+all: $(TARGETS)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+$(BIN_DIR)/main: main.c | $(BIN_DIR)
+	$(CC) $(CFLAGS) main.c -o $@ $(SDL_LIBS)
+
+$(BIN_DIR)/proto: enclosed_iterating_solver.c | $(BIN_DIR)
+	$(CC) $(CFLAGS) enclosed_iterating_solver.c -o $@ $(SDL_LIBS)
+
 clean:
-	rm -f main enclosed proto *.o
+	rm -rf $(BIN_DIR)
+
 .PHONY: all clean
+
